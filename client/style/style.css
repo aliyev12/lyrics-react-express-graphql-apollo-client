@@ -1,0 +1,13 @@
+.collection-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.material-icons {
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.material-icons:hover {
+  color: red;
+}
