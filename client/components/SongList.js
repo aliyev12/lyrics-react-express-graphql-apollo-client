@@ -18,11 +18,11 @@ const SongList = ({ history, location, match }) => {
   const [deleteSong] = useMutation(DELETE_SONG, {
     refetchQueries: [{ query: GET_SONGS }]
   });
-  
+
   const renderSongs = () =>
     data.songs.map(({ id, title }) => (
       <li key={id} className="collection-item">
-        {title}
+        <Link to={`/songs/${id}`}>{title}</Link>
         <i
           className="material-icons"
           onClick={() => deleteSong({ variables: { id } })}
