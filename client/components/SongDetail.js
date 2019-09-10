@@ -19,7 +19,7 @@ const SongDetail = ({ match, history }) => {
     <div>
       <h3>Song Detail</h3>
       {song.lyrics && song.lyrics.length ? (
-        <LyricList lyrics={song.lyrics} />
+        <LyricList lyrics={song.lyrics} songId={song.id} title={song.title}/>
       ) : null}
       <Link to="/">Back</Link>
       <LyricCreate songId={match.params.id} history={history} lyrics={song.lyrics} title={song.title} />

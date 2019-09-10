@@ -11,6 +11,7 @@ const ADD_LYRIC_TO_SONG = gql`
       lyrics {
         id
         content
+        likes
       }
     }
   }
@@ -30,6 +31,7 @@ const LyricCreate = ({ songId, lyrics, title }) => {
           ...lyrics,
           {
             id: 'temp-id',
+            likes: 0,
             content,
             __typename: 'LyricType'
           }
