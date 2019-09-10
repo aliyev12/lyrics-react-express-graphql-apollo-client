@@ -19,5 +19,5 @@ LyricSchema.statics.like = function(id) {
       return lyric.save();
     })
 }
-
+ 
 mongoose.model('lyric', LyricSchema);

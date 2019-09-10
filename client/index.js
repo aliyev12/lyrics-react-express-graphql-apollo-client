@@ -7,7 +7,9 @@ import { HttpLink } from 'apollo-link-http';
 import { HashRouter } from 'react-router-dom';
 import App from './components/App';
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+  dataIdFromObject: o => o.id || null
+});
 const link = new HttpLink({
   uri: 'http://localhost:4000/graphql'
 });

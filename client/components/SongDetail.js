@@ -1,10 +1,11 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import GET_SONG from '../queries/fetchSong';
 import LyricCreate from './LyricCreate';
+import LyricList from './LyricList';
 
-const SongDetail = ({ match }) => {
+const SongDetail = ({ match, history }) => {
   const { loading, error, data } = useQuery(GET_SONG, {
     variables: { id: match.params.id }
   });
@@ -12,14 +13,16 @@ const SongDetail = ({ match }) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error...</div>;
   const { song } = data;
-  if (!song) return <div>Something went wrong, please try again and refresh page.</div>
+  if (!song)
+    return <div>Something went wrong, please try again and refresh page.</div>;
   return (
     <div>
       <h3>Song Detail</h3>
-      <p>id: {song.id}</p>
-      <p>title: {song.title}</p>
+      {song.lyrics && song.lyrics.length ? (
+        <LyricList lyrics={song.lyrics} />
+      ) : null}
       <Link to="/">Back</Link>
-      <LyricCreate />
+      <LyricCreate songId={match.params.id} history={history} lyrics={song.lyrics} title={song.title} />
     </div>
   );
 };
